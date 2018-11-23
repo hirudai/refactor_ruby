@@ -38,7 +38,7 @@ tosses.each_index { |i| points << "#{i},#{200-tosses[i]}" }
 data = %Q{<svg xmlns="http://www.w3.org/2000/svg"
     xmlns:xlink="http://www.w3.org/1999/xlink" >
     #{x_axis(points)}
-    #{spark_line(points)}
+    #{sparkline(points)}
     #{spark(tosses.length-1, 200-tosses[-1], tosses[-1])}
 </svg>}
 
