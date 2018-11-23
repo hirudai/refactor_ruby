@@ -13,7 +13,9 @@ end
 SQUARE_SIDE = 4
 SPARK_COLOR = 'red'
 
-def sparkline(points)
+def sparkline(y_values)
+  points = []
+  y_values.each_index { |i| points << "#{i},#{200-y_values[i]}" }
   "<!-- sparkline -->
   #{SVG.polyline(points, 'none', '#333', 1)}"
 end
@@ -29,19 +31,17 @@ def spark(y_values)
   #{SVG.text(centre_x+6, centre_y+4, final_value, 'Verdana', 9, SPARK_COLOR)}"
 end
 
-def x_axis(points)
+def x_axis(y_values)
   "<!-- x-axis -->
-  #{SVG.line(0, 200, points.length, 200, '#999', 1)}"
+  #{SVG.line(0, 200, y_values.length, 200, '#999', 1)}"
 end
 
 tosses = values(1000)
-points = []
-tosses.each_index { |i| points << "#{i},#{200-tosses[i]}" }
 
 data = %Q{<svg xmlns="http://www.w3.org/2000/svg"
     xmlns:xlink="http://www.w3.org/1999/xlink" >
-    #{x_axis(points)}
-    #{sparkline(points)}
+    #{x_axis(tosses)}
+    #{sparkline(tosses)}
     #{spark(tosses)}
 </svg>}
 
