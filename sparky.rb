@@ -18,12 +18,15 @@ def sparkline(points)
   #{SVG.polyline(points, 'none', '#333', 1)}"
 end
 
-def spark(centre_x, centre_y, value)
+def spark(y_values)
+  final_value = y_values[-1]
+  centre_x = y_values.length - 1
+  centre_y = 200 - final_value
   "<!-- spark -->
   #{SVG.rect(centre_x-(SQUARE_SIDE/2), centre_y-(SQUARE_SIDE/2),
           SQUARE_SIDE, SQUARE_SIDE, SPARK_COLOR, 'none', 0) }
   <!-- final value -->
-  #{SVG.text(centre_x+6, centre_y+4, value, 'Verdana', 9, SPARK_COLOR)}"
+  #{SVG.text(centre_x+6, centre_y+4, final_value, 'Verdana', 9, SPARK_COLOR)}"
 end
 
 def x_axis(points)
@@ -39,7 +42,7 @@ data = %Q{<svg xmlns="http://www.w3.org/2000/svg"
     xmlns:xlink="http://www.w3.org/1999/xlink" >
     #{x_axis(points)}
     #{sparkline(points)}
-    #{spark(tosses.length-1, 200-tosses[-1], tosses[-1])}
+    #{spark(tosses)}
 </svg>}
 
 #puts "Content-Type:image/svg+xml
