@@ -49,8 +49,8 @@ data = %Q{<svg xmlns="http://www.w3.org/2000/svg"
     #{spark(NUMBER_OF_TOSSES-1, 200-tosses[-1], tosses[-1])}
 </svg>}
 
-puts "Content-Type:image/svg+xml
-Content-Length:#{data.length}
+#puts "Content-Type:image/svg+xml
+#Content-Length:#{data.length}
 
-#{data}"
+puts data
 
